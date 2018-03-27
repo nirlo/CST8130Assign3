@@ -22,6 +22,7 @@ public class BlockChain {
 		boolean success = false;
 		
 		for(Block b: blockChain) {
+			try {
 			if(blockChain.get(blockChain.indexOf(b) +1) == null) {
 				break;
 			}
@@ -30,6 +31,9 @@ public class BlockChain {
 			} else {
 				return false;
 			}
+			}catch(IndexOutOfBoundsException e) {
+				success = true;
+			}
 		}
 		
 		return success;
@@ -37,7 +41,12 @@ public class BlockChain {
 	
 	public void addBlock(Scanner keyboard) {
 		Block newOne = new Block();
+		try {
 		if(newOne.addInfoToBlock(keyboard, blockChain.getLast().getCurrentHash())) {
+			blockChain.push(newOne);
+		}
+		}catch(NoSuchElementException e) {
+			newOne.addInfoToBlock(keyboard, 0.0f);
 			blockChain.push(newOne);
 		}
 	}
@@ -65,6 +74,18 @@ public class BlockChain {
 		
 	}
 	
+	public String getName() {
+		return courseName;
+	}
 	
-
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("For course " +courseName + "\n[\n");
+		for(Block b: blockChain) {
+			sb.append(b.toString()+ ", \n");
+		}
+		sb.append("]\n");
+		return sb.toString();
+	}
+		
 }
