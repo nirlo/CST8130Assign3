@@ -43,11 +43,11 @@ public class BlockChain {
 		Block newOne = new Block();
 		try {
 		if(newOne.addInfoToBlock(keyboard, blockChain.getLast().getCurrentHash())) {
-			blockChain.push(newOne);
+			blockChain.add(newOne);
 		}
 		}catch(NoSuchElementException e) {
 			newOne.addInfoToBlock(keyboard, 0.0f);
-			blockChain.push(newOne);
+			blockChain.add(newOne);
 		}
 	}
 	

@@ -65,7 +65,7 @@ public class College {
 			System.out.println(i + blockChain.get(i).getName());
 		}
 		try {
-			blockChain.get(Integer.parseInt(kb.next())).removeBadBlocks();;
+			blockChain.get(Integer.parseInt(kb.next())).removeBadBlocks();
 		}catch(IndexOutOfBoundsException|NumberFormatException e) {
 			System.out.println("Sorry, you chose wrong. Back to main menu");
 		}
